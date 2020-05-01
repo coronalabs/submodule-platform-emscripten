@@ -402,11 +402,6 @@ namespace Rtt
 		}
 	}
 
-	void  EmscriptenPlatform::HttpPost(const char* url, const char* key, const char* value) const
-	{
-		// Rtt_ASSERT_NOT_IMPLEMENTED();
-	}
-
 	PlatformEventSound * EmscriptenPlatform::CreateEventSound(const ResourceHandle<lua_State> & handle, const char* filePath) const
 	{
 		EmscriptenEventSound *p = Rtt_NEW(fAllocator, EmscriptenEventSound(handle, *fAllocator));
@@ -975,18 +970,6 @@ namespace Rtt
 			rc = jsDeletePreference(key.c_str());
 		}
 		return rc == false ? OperationResult::FailedWith("This API is not supported on this platform.") : Rtt::OperationResult::kSucceeded;
-	}
-
-	bool EmscriptenPlatform::HttpDownload(const char* url, String& result, String& errorMesg, const std::map<std::string, std::string>& headers) const
-	{
-		Rtt_ASSERT_MSG(0, "Code should NOT be reached");
-		return false;
-	}
-
-	bool EmscriptenPlatform::HttpDownloadFile(const char* url, const char* filename, String& errorMesg, const std::map<std::string, std::string>& headers) const
-	{
-		Rtt_ASSERT_MSG(0, "Code should NOT be reached");
-		return false;
 	}
 
 
