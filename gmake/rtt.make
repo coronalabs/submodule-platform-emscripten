@@ -25,7 +25,7 @@ ifeq ($(config),Debug)
   TARGETDIR  = obj/Debug
   TARGET     = $(TARGETDIR)/librtt.o
   DEFINES   += -DRtt_DEBUG -DLUA_USE_APICHECK -DRtt_EMSCRIPTEN_ENV
-  INCLUDES  += -I../ -I../../../librtt -I../../../librtt/Corona -I../../../external/b2Separator-cpp -I../../../external/Box2D -I../../../external/fft -I../../../external/lua-5.1.3/src -I../../../external/luasocket/src -I../../../external/smoothpolygon -I../../../external/rsa -I../system/include
+  INCLUDES  += -I../ -I../../../librtt -I../../../librtt/Corona -I../../../external/b2Separator-cpp -I../../../external/Box2D -I../../../external/fft -I../../../external/lua-5.1.3/src -I../../../external/luasocket/src -I../../../external/smoothpolygon -I../system/include
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -g
   ALL_CXXFLAGS  += $(CXXFLAGS) $(ALL_CFLAGS) -fno-exceptions -fno-rtti
@@ -49,7 +49,7 @@ ifeq ($(config),Release)
   TARGETDIR  = obj/Release
   TARGET     = $(TARGETDIR)/librtt.o
   DEFINES   += -DNDEBUG -DRtt_EMSCRIPTEN_ENV
-  INCLUDES  += -I../ -I../../../librtt -I../../../librtt/Corona -I../../../external/b2Separator-cpp -I../../../external/Box2D -I../../../external/fft -I../../../external/lua-5.1.3/src -I../../../external/luasocket/src -I../../../external/smoothpolygon -I../../../external/rsa -I../system/include
+  INCLUDES  += -I../ -I../../../librtt -I../../../librtt/Corona -I../../../external/b2Separator-cpp -I../../../external/Box2D -I../../../external/fft -I../../../external/lua-5.1.3/src -I../../../external/luasocket/src -I../../../external/smoothpolygon -I../system/include
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
   ALL_CFLAGS    += $(CFLAGS) $(ALL_CPPFLAGS) $(ARCH) -O2
   ALL_CXXFLAGS  += $(CXXFLAGS) $(ALL_CFLAGS) -fno-exceptions -fno-rtti
@@ -79,7 +79,6 @@ OBJECTS := \
 	$(OBJDIR)/Rtt_Fixed.o \
 	$(OBJDIR)/Rtt_FixedMath.o \
 	$(OBJDIR)/Rtt_Math.o \
-	$(OBJDIR)/Rtt_MD4.o \
 	$(OBJDIR)/Rtt_Time.o \
 	$(OBJDIR)/Rtt_VersionTimestamp.o \
 	$(OBJDIR)/CoronaAssert.o \
@@ -120,7 +119,6 @@ OBJECTS := \
 	$(OBJDIR)/Rtt_LuaTableIterator.o \
 	$(OBJDIR)/Rtt_LuaUserdataProxy.o \
 	$(OBJDIR)/Rtt_Matrix.o \
-	$(OBJDIR)/Rtt_Message.o \
 	$(OBJDIR)/Rtt_ParticleSystemObject.o \
 	$(OBJDIR)/Rtt_PhysicsContact.o \
 	$(OBJDIR)/Rtt_PhysicsContactListener.o \
@@ -163,7 +161,6 @@ OBJECTS := \
 	$(OBJDIR)/Rtt_FileSystem.o \
 	$(OBJDIR)/Rtt_FixedBlockAllocator.o \
 	$(OBJDIR)/Rtt_Geometry.o \
-	$(OBJDIR)/Rtt_MessageDigest.o \
 	$(OBJDIR)/Rtt_RefCount.o \
 	$(OBJDIR)/Rtt_ResourceHandle.o \
 	$(OBJDIR)/Rtt_SharedCount.o \
@@ -265,10 +262,6 @@ OBJECTS := \
 	$(OBJDIR)/Rtt_ReadOnlyInputAxisCollection.o \
 	$(OBJDIR)/Rtt_ReadOnlyInputDeviceCollection.o \
 	$(OBJDIR)/b2Separator.o \
-	$(OBJDIR)/prime.o \
-	$(OBJDIR)/rsa.o \
-	$(OBJDIR)/vlong.o \
-	$(OBJDIR)/vlong_io.o \
 	$(OBJDIR)/SmoothPolygon.o \
 	$(OBJDIR)/composer.o \
 	$(OBJDIR)/composer_scene.o \
