@@ -148,15 +148,6 @@ pushd $path > /dev/null
 	"$EMSDK"/emcc $CC_FLAGS obj/"$CONFIG"/libcorona.o -s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js --js-library ../Rtt_EmscriptenVideo.js --preload-file "$TMP_DIR"@/ -o "$OUTPUT_HTML"
 	checkError
 
-	# echo " "
-	# echo "Sign JavaScript:"
-	# OUTPUT_JS=${OUTPUT_HTML%.*}.js
-	# echo '\t' "Original JavaScript available here: $TMP_DIR"
-	# cp "$OUTPUT_JS" "$TMP_DIR"
-	# echo '\t' "$path"/app_sign sign-js "$path/key" "$TMP_DIR"/resource.car "$OUTPUT_JS" little
-	# "$path"/app_sign sign-js "$path/key" "$TMP_DIR"/resource.car "$OUTPUT_JS" little
-	# checkError
-
 
 	echo "SUCCESS! Run with command:"
 	echo '\t' $EMSDK/emrun $OUTPUT_HTML
