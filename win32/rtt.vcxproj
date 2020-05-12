@@ -525,8 +525,6 @@
     <ClInclude Include="..\..\..\librtt\Rtt_SurfaceInfo.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_TesselatorStream.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_Transform.h" />
-    <ClInclude Include="..\..\..\librtt\Rtt_Verifier.h" />
-    <ClInclude Include="..\..\..\librtt\Rtt_VerifierData.h" />
     <ClInclude Include="..\..\..\plugins\network\emscripten\EmscriptenNetworkSupport.h" />
     <ClInclude Include="..\..\..\plugins\network\emscripten\NetworkLibrary.h" />
     <ClInclude Include="..\..\..\plugins\shared\CoronaLuaLibrary.h" />
@@ -954,7 +952,6 @@
     <ClCompile Include="..\..\..\librtt\Rtt_StrokeTesselatorStream.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_TesselatorStream.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_Transform.cpp" />
-    <ClCompile Include="..\..\..\librtt\Rtt_Verifier.cpp" />
     <ClCompile Include="..\..\..\plugins\network\emscripten\EmscriptenNetworkSupport.cpp" />
     <ClCompile Include="..\..\..\plugins\network\emscripten\NetworkLibrary.cpp" />
     <ClCompile Include="..\..\..\plugins\shared\CoronaLuaLibrary.cpp" />

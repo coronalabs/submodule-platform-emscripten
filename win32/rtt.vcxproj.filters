@@ -379,9 +379,6 @@
     <ClCompile Include="..\..\..\librtt\Rtt_Transform.cpp">
       <Filter>rtt</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\librtt\Rtt_Verifier.cpp">
-      <Filter>rtt</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\librtt\b2GLESDebugDraw.cpp">
       <Filter>rtt</Filter>
     </ClCompile>
@@ -2054,12 +2051,6 @@
       <Filter>rtt</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\librtt\Rtt_Transform.h">
-      <Filter>rtt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\librtt\Rtt_Verifier.h">
-      <Filter>rtt</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\librtt\Rtt_VerifierData.h">
       <Filter>rtt</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\librtt\b2GLESDebugDraw.h">

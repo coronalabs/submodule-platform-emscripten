@@ -155,7 +155,6 @@ OBJECTS := \
 	$(OBJDIR)/Rtt_StrokeTesselatorStream.o \
 	$(OBJDIR)/Rtt_TesselatorStream.o \
 	$(OBJDIR)/Rtt_Transform.o \
-	$(OBJDIR)/Rtt_Verifier.o \
 	$(OBJDIR)/Rtt_Allocator.o \
 	$(OBJDIR)/Rtt_Array.o \
 	$(OBJDIR)/Rtt_ArrayTuple.o \
@@ -805,10 +804,6 @@ $(OBJDIR)/Rtt_TesselatorStream.o: ../../../librtt/Rtt_TesselatorStream.cpp
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
 
 $(OBJDIR)/Rtt_Transform.o: ../../../librtt/Rtt_Transform.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
-
-$(OBJDIR)/Rtt_Verifier.o: ../../../librtt/Rtt_Verifier.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
 

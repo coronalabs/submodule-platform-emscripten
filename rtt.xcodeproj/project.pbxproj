@@ -287,7 +287,6 @@
 		703C143942F255C328732BBC /* widget_spinner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3BC522F51EA059A641C83308 /* widget_spinner.cpp */; };
 		70B6412226913AEB4BE42097 /* widget_theme_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38FC47F14A946F2C50B07B3F /* widget_theme_android.cpp */; };
 		7116117745AD7EB732A02A41 /* Rtt_GroupObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C0D082356BC52940DAC2338 /* Rtt_GroupObject.cpp */; };
-		71743061324762D74B96086A /* Rtt_Verifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF0CA73C2F715A5B6A160E /* Rtt_Verifier.cpp */; };
 		718E276C468832367D171B1E /* Rtt_ShaderProxy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 237D7E692B4F569E3E575BFF /* Rtt_ShaderProxy.cpp */; };
 		71CA2D94582B2AA635B0419D /* widget_button.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C6E17EE200C003D58C22CB2 /* widget_button.cpp */; };
 		71F93E1768EA014C54EE577C /* kernel_filter_frostedGlass_gl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 456C573766E1518E4A2E42F9 /* kernel_filter_frostedGlass_gl.cpp */; };
@@ -691,7 +690,6 @@
 		49E84BA613135D965BD73A2B /* Rtt_BitmapMask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_BitmapMask.h; path = ../../librtt/Display/Rtt_BitmapMask.h; sourceTree = "<group>"; };
 		4A3A44194D8844EC7B2A3995 /* Rtt_LuaUserdataProxy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rtt_LuaUserdataProxy.cpp; path = ../../librtt/Rtt_LuaUserdataProxy.cpp; sourceTree = "<group>"; };
 		4A8F1CD639E90B4861662673 /* Rtt_Time.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = Rtt_Time.c; path = ../../librtt/Core/Rtt_Time.c; sourceTree = "<group>"; };
-		4ADF0CA73C2F715A5B6A160E /* Rtt_Verifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rtt_Verifier.cpp; path = ../../librtt/Rtt_Verifier.cpp; sourceTree = "<group>"; };
 		4B016EF6688D033A025A748B /* Rtt_ShapeObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rtt_ShapeObject.cpp; path = ../../librtt/Display/Rtt_ShapeObject.cpp; sourceTree = "<group>"; };
 		4B5604F929BC7C5140FD5DE8 /* Rtt_Fixed.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = Rtt_Fixed.c; path = ../../librtt/Core/Rtt_Fixed.c; sourceTree = "<group>"; };
 		4B7C5C33475342E0372444C0 /* Rtt_Runtime.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rtt_Runtime.cpp; path = ../../librtt/Rtt_Runtime.cpp; sourceTree = "<group>"; };
@@ -714,7 +712,6 @@
 		511977BE70685E020DD95381 /* kernel_filter_crystallize_gl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kernel_filter_crystallize_gl.cpp; sourceTree = "<group>"; };
 		512619C843EA5B1F0F201CD4 /* Rtt_Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_Scene.h; path = ../../librtt/Display/Rtt_Scene.h; sourceTree = "<group>"; };
 		515A794A72EA677F7BB16151 /* Rtt_GradientPaint.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Rtt_GradientPaint.cpp; path = ../../librtt/Display/Rtt_GradientPaint.cpp; sourceTree = "<group>"; };
-		516A08782749377D0C0F435F /* Rtt_VerifierData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_VerifierData.h; path = ../../librtt/Rtt_VerifierData.h; sourceTree = "<group>"; };
 		51B7689809061CEB0DB632CA /* timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = timer.cpp; sourceTree = "<group>"; };
 		51BF10C71CDD7372727C6A20 /* Rtt_InputDeviceConnectionState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_InputDeviceConnectionState.h; path = ../../librtt/Input/Rtt_InputDeviceConnectionState.h; sourceTree = "<group>"; };
 		51CA532A0FD6549513DE53D9 /* Rtt_PlatformInputAxis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_PlatformInputAxis.h; path = ../../librtt/Input/Rtt_PlatformInputAxis.h; sourceTree = "<group>"; };
@@ -872,7 +869,6 @@
 		798F5C705FCE019C352F432C /* Rtt_LuaCoronaBaseLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_LuaCoronaBaseLib.h; path = ../../librtt/Rtt_LuaCoronaBaseLib.h; sourceTree = "<group>"; };
 		79C3125A07D952503E3B14CB /* Rtt_LuaLibDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_LuaLibDisplay.h; path = ../../librtt/Display/Rtt_LuaLibDisplay.h; sourceTree = "<group>"; };
 		79CA729B451F2C42236B6BB9 /* Rtt_FixedBlockAllocator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_FixedBlockAllocator.h; path = ../../librtt/Core/Rtt_FixedBlockAllocator.h; sourceTree = "<group>"; };
-		79DC11D81B7962C4604708DA /* Rtt_Verifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_Verifier.h; path = ../../librtt/Rtt_Verifier.h; sourceTree = "<group>"; };
 		79E61B9420D0642F7C6C279F /* kernel_filter_polkaDots_gl.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kernel_filter_polkaDots_gl.cpp; sourceTree = "<group>"; };
 		79FC13A47C243656574E56C8 /* Rtt_PlatformWebPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_PlatformWebPopup.h; path = ../../librtt/Rtt_PlatformWebPopup.h; sourceTree = "<group>"; };
 		7A726D6D253A1309737F36D5 /* Rtt_PlatformBitmap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Rtt_PlatformBitmap.h; path = ../../librtt/Display/Rtt_PlatformBitmap.h; sourceTree = "<group>"; };
@@ -1124,9 +1120,6 @@
 				129E7DE977505D6816F74772 /* Rtt_TesselatorStream.h */,
 				3846017127562F9221D07784 /* Rtt_Transform.cpp */,
 				712B77B7420B7C0C27310C6C /* Rtt_Transform.h */,
-				4ADF0CA73C2F715A5B6A160E /* Rtt_Verifier.cpp */,
-				79DC11D81B7962C4604708DA /* Rtt_Verifier.h */,
-				516A08782749377D0C0F435F /* Rtt_VerifierData.h */,
 				36B4079706514A01401960C2 /* b2GLESDebugDraw.cpp */,
 				3EBF151C6E957E3566293B4F /* b2GLESDebugDraw.h */,
 			);
@@ -1884,7 +1877,6 @@
 				1FBD080B1F5BD1C000453D60 /* Rtt_OperationResult.cpp in Sources */,
 				7D6C78EA734B7AD96984632C /* Rtt_Transform.cpp in Sources */,
 				F5332D731AD86F3800F0D08C /* Rtt_ParticleSystemObject.cpp in Sources */,
-				71743061324762D74B96086A /* Rtt_Verifier.cpp in Sources */,
 				0B65545C22132FC071B07DDF /* b2GLESDebugDraw.cpp in Sources */,
 				3439452B137C3D127E3B0AA3 /* CoronaPrototype.cpp in Sources */,
 				6C415B3B2CAD23BE36222876 /* CoronaProvider.cpp in Sources */,
