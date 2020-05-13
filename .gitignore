@@ -77,3 +77,4 @@ plugins/ads-inmobi/android/AndroidManifest\.xml
 plugins/ads-inmobi/android/proguard-project\.txt
 plugins/ads-inmobi/android/project\.properties
 
+gmake/obj/
