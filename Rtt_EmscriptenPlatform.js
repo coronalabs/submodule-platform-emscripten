@@ -183,7 +183,7 @@ var platformLibrary =
 	{
 		var localization = window.navigator.userLanguage || window.navigator.language;	// en-US
 		var a = localization.split('-');
-		var s = a[1];
+		var s = a[1] || localization;
 
 		var maxBytesToWrite = 64;
 		if (jsLocaleCountry == null)
@@ -199,7 +199,7 @@ var platformLibrary =
 	{
 		var localization = window.navigator.userLanguage || window.navigator.language;	// en-US
 		var a = localization.split('-');
-		var s = a[0] + '_' + a[1];
+		var s = a[0] + '_' + (a[1] || a[0]).toUpperCase();
 
 		var maxBytesToWrite = 64;
 		if (jsLanguage == null)
