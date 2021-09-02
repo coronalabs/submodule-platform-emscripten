@@ -84,7 +84,7 @@ REM If so, then we need to convert its OpenGL shader code into compiled Direct3D
 if NOT DEFINED isCsoFlagSet goto OnSkipShaderCompilation
 if "%sourceFileName:~0,7%" NEQ "kernel_" goto OnSkipShaderCompilation
 set compiledKernelFilePath=%intermediatePath%\%sourceFileName%_compiled.lua
-"%luaAppPath%\lua.exe" LuaKernelGlslToCso.lua "%sourceFilePath%" "%compiledKernelFilePath%" "%intermediatePath%" "..\..\external\Angle\bin\Win32\winrtcompiler.exe"
+"%luaAppPath%\lua.exe" LuaKernelGlslToCso.lua "%sourceFilePath%" "%compiledKernelFilePath%" "%intermediatePath%" "..\..\..\external\Angle\bin\Win32\winrtcompiler.exe"
 if ERRORLEVEL 2 goto OnError
 if ERRORLEVEL 1 goto OnSkipShaderCompilation
 set sourceFilePath=%compiledKernelFilePath%
