@@ -1,16 +1,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "emscripten", "win32\rtt.vcxproj", "{49F4771E-92A6-45D2-816C-072A4EB23E28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build.Tools", "Build.Tools", "{3018FE52-B8E3-42F4-86C4-EC6637DD008D}"
 	ProjectSection(SolutionItems) = preProject
-		..\windows\Build.Tools\CoronaLabsInc.Sign.bat = ..\windows\Build.Tools\CoronaLabsInc.Sign.bat
-		..\windows\Build.Tools\LuaToCppFile.bat = ..\windows\Build.Tools\LuaToCppFile.bat
-		..\windows\Build.Tools\LuaToCppSchema.xml = ..\windows\Build.Tools\LuaToCppSchema.xml
-		..\windows\Build.Tools\LuaToCppTask.targets = ..\windows\Build.Tools\LuaToCppTask.targets
-		..\windows\Build.Tools\UpdateProjectFileVersion.vbs = ..\windows\Build.Tools\UpdateProjectFileVersion.vbs
+		Build.Tools\CoronaLabsInc.Sign.bat = Build.Tools\CoronaLabsInc.Sign.bat
+		Build.Tools\LuaToCppFile.bat = Build.Tools\LuaToCppFile.bat
+		Build.Tools\LuaToCppSchema.xml = Build.Tools\LuaToCppSchema.xml
+		Build.Tools\LuaToCppTask.targets = Build.Tools\LuaToCppTask.targets
+		Build.Tools\UpdateProjectFileVersion.vbs = Build.Tools\UpdateProjectFileVersion.vbs
 	EndProjectSection
 EndProject
 Global
@@ -47,5 +47,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8F9A67D0-88F3-49F0-AD3E-7A0A2E32C78A}
 	EndGlobalSection
 EndGlobal
