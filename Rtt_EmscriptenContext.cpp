@@ -405,12 +405,13 @@ namespace Rtt
 		printf("linked version %d.%d.%d\n", linked.major, linked.minor, linked.patch);
 
 #if defined(EMSCRIPTEN)
-		emscripten_set_blur_callback("#window", this, true, blurCallback);
-		emscripten_set_focus_callback("#window", this, true, focusCallback);
-		emscripten_set_resize_callback("#window", this, false, resizeCallback);
-		emscripten_set_mouseup_callback("#document", this, true, mouseupCallback);		// for OSX
-		emscripten_set_touchend_callback("#document", this, true, touchCallback);		// for iOS
-		emscripten_set_beforeunload_callback(this, beforeunloadCallback);
+		// fixme
+//		emscripten_set_blur_callback("#window", this, true, blurCallback);
+		//emscripten_set_focus_callback("#window", this, true, focusCallback);
+//		emscripten_set_resize_callback("#window", this, false, resizeCallback);
+//		emscripten_set_mouseup_callback("#document", this, true, mouseupCallback);		// for OSX
+//		emscripten_set_touchend_callback("#document", this, true, touchCallback);		// for iOS
+//		emscripten_set_beforeunload_callback(this, beforeunloadCallback);
 
 		// resourceDir, documentsDir, temporaryDir,	cachesDir, systemCachesDir 
 		fPlatform = new EmscriptenPlatform(fPathToApp.c_str(), fDocumentsDir.c_str(), fPathToApp.c_str(), fPathToApp.c_str(), fPathToApp.c_str());

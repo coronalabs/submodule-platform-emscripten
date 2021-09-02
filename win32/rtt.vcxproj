@@ -120,7 +120,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>Rtt_EMSCRIPTEN_ENV;Rtt_USE_MAIN_LUA;EMSCRIPTEN;__EMSCRIPTEN__;Rtt_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>../;../../../external/lua-5.1.3/src;../../../librtt;../../../librtt/Core;../../../external/rsa;../../../plugins/shared;../../../librtt/Corona;../../../external/Box2D;../../../external/ALmixer;../../../external/openal-soft-1.12.854/include/AL;../../../external/LuaHashMap;../../../external/b2Separator-cpp;../../../external/luafilesystem\src;../../../external/opengl;../../../external/libpng1243b01;../../../external/libjpeg;../../../external/zlib123;../../shared;../../../external/smoothpolygon;$(IncludePath)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2 -Wno-inconsistent-missing-override %(AdditionalOptions)</AdditionalOptions>
       <DisableWarnings>
       </DisableWarnings>
       <LanguageStandardMode>NoLanguageStandardSet</LanguageStandardMode>
@@ -131,7 +131,7 @@
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
       <PreloadFile>C:\corona\platform\test\assets2@/</PreloadFile>
-      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s USE_SDL=2  --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js  --js-library ../Rtt_EmscriptenVideo.js %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s USE_SDL=2  --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js  --js-library ../Rtt_EmscriptenVideo.js -lidbfs.js %(AdditionalOptions)</AdditionalOptions>
       <EmbedFile>
       </EmbedFile>
     </Link>
