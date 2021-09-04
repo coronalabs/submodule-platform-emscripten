@@ -55,11 +55,12 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>HTMLPage</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>emcc</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EmscriptenDir>$(EMSDK_PATH)\upstream\emscripten\</EmscriptenDir>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='emscripten|Win32'">
     <PlatformToolset>v120</PlatformToolset>
@@ -90,6 +91,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(EmscriptenIncludeDir)</IncludePath>
+    <TargetName>coronaHtml5App</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -97,6 +99,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
     <LinkIncremental>false</LinkIncremental>
+    <TargetName>coronaHtml5App</TargetName>
+    <IncludePath>$(EmscriptenIncludeDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -162,16 +166,16 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>Rtt_EMSCRIPTEN_ENV;Rtt_USE_MAIN_LUA;EMSCRIPTEN;__EMSCRIPTEN__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>../;../../../external/lua-5.1.3/src;../../../librtt;../../../external/rsa;../../../plugins/shared;../../../librtt/Corona;../../../external/Box2D;../../../external/ALmixer;../../../external/openal-soft-1.12.854/include/AL;../../../external/LuaHashMap;../../../external/b2Separator-cpp;../../../external\luafilesystem\src;../../../external\opengl;../../../external/libpng1243b01;../../../external/libjpeg;../../../external/zlib123;../../shared;../../../external\smoothpolygon;$(IncludePath)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>../;../../../external/lua-5.1.3/src;../../../librtt;../../../librtt/Core;../../../external/rsa;../../../plugins/shared;../../../librtt/Corona;../../../external/Box2D;../../../external/ALmixer;../../../external/openal-soft-1.12.854/include/AL;../../../external/LuaHashMap;../../../external/b2Separator-cpp;../../../external/luafilesystem\src;../../../external/opengl;../../../external/libpng1243b01;../../../external/libjpeg;../../../external/zlib123;../../shared;../../../external/smoothpolygon;$(IncludePath)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2 -Wno-inconsistent-missing-override %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <PreloadFile>Z:\corona\main\platform\emscripten\Debug@/</PreloadFile>
-      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s USE_SDL=2 --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js  --js-library ../Rtt_EmscriptenVideo.js %(AdditionalOptions)</AdditionalOptions>
+      <PreloadFile>C:\corona\platform\test\assets2@/</PreloadFile>
+      <AdditionalOptions>-s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -s USE_SDL=2  --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js  --js-library ../Rtt_EmscriptenVideo.js -lidbfs.js %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
