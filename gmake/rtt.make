@@ -23,7 +23,7 @@ ifeq ($(config),Debug)
   OBJDIR     = obj/Debug/rtt
   # TARGETDIR  = ../../../Build/gmake/bin/Debug
   TARGETDIR  = obj/Debug
-  TARGET     = $(TARGETDIR)/librtt.o
+  TARGET     = $(TARGETDIR)/librtt.a
   DEFINES   += -DRtt_DEBUG -DLUA_USE_APICHECK -DRtt_EMSCRIPTEN_ENV
   INCLUDES  += -I../ -I../../../librtt -I../../../librtt/Corona -I../../../external/b2Separator-cpp -I../../../external/Box2D -I../../../external/fft -I../../../external/lua-5.1.3/src -I../../../external/luasocket/src -I../../../external/smoothpolygon -I../system/include
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -33,8 +33,8 @@ ifeq ($(config),Debug)
   ALL_LDFLAGS   += $(LDFLAGS)
   LDDEPS    +=
   LIBS      += $(LDDEPS)
-  # LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
+  LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
+  #LINKCMD    = $(CC) $(OBJECTS) -o $(TARGET)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -47,7 +47,7 @@ ifeq ($(config),Release)
   OBJDIR     = obj/Release/rtt
   # TARGETDIR  = ../../../Build/gmake/bin/Release
   TARGETDIR  = obj/Release
-  TARGET     = $(TARGETDIR)/librtt.o
+  TARGET     = $(TARGETDIR)/librtt.a
   DEFINES   += -DNDEBUG -DRtt_EMSCRIPTEN_ENV
   INCLUDES  += -I../ -I../../../librtt -I../../../librtt/Corona -I../../../external/b2Separator-cpp -I../../../external/Box2D -I../../../external/fft -I../../../external/lua-5.1.3/src -I../../../external/luasocket/src -I../../../external/smoothpolygon -I../system/include
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -57,8 +57,8 @@ ifeq ($(config),Release)
   ALL_LDFLAGS   += $(LDFLAGS) -Wl,-x
   LDDEPS    +=
   LIBS      += $(LDDEPS)
-  # LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
+  LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
+  #LINKCMD    = $(CC) $(OBJECTS) -o $(TARGET)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS

@@ -119,8 +119,8 @@ pushd $path > /dev/null
 	echo " "
 	echo "Building Corona libraries:"
 
-	echo '\t' make CC="$EMSDK"/emcc CXX="$EMSDK"/em++ verbose=1 config="$CONFIG" CXXFLAGS="-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2"
-	make CC="$EMSDK"/emcc CXX="$EMSDK"/em++ verbose=1 config="$CONFIG" CXXFLAGS="-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2 -I\"$path/hack_includes\""
+	echo '\t' make AR="$EMSDK"/emar CC="$EMSDK"/emcc CXX="$EMSDK"/em++ verbose=1 config="$CONFIG" CXXFLAGS="-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2"
+	make AR="$EMSDK"/emar CC="$EMSDK"/emcc CXX="$EMSDK"/em++ verbose=1 config="$CONFIG" CXXFLAGS="-s LEGACY_VM_SUPPORT=1 -s USE_SDL=2 -I\"$path/hack_includes\""
 	checkError
 
 	echo " "
@@ -144,8 +144,8 @@ pushd $path > /dev/null
 
 	echo " "
 	echo "Building HTML:"
-	echo '\t' "$EMSDK"/emcc $CC_FLAGS obj/"$CONFIG"/libcorona.o -s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -O3 -s USE_SDL=2 --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenVideo.js --preload-file "$TMP_DIR"@/ -o "$OUTPUT_HTML"
-	"$EMSDK"/emcc $CC_FLAGS obj/"$CONFIG"/libcorona.o -s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js --js-library ../Rtt_EmscriptenVideo.js --preload-file "$TMP_DIR"@/ -o "$OUTPUT_HTML"
+	echo '\t' "$EMSDK"/emcc $CC_FLAGS obj/"$CONFIG"/libcorona.a -s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -s ALLOW_MEMORY_GROWTH=1 -O3 -s USE_SDL=2 --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenVideo.js --preload-file "$TMP_DIR"@/ -o "$OUTPUT_HTML"
+	"$EMSDK"/emcc $CC_FLAGS obj/"$CONFIG"/libcorona.a -s LEGACY_VM_SUPPORT=1 -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall", "cwrap"]' -O3 -s USE_SDL=2 -s ALLOW_MEMORY_GROWTH=1 --js-library ../Rtt_PlatformWebAudioPlayer.js --js-library ../Rtt_EmscriptenPlatform.js --js-library ../Rtt_EmscriptenVideo.js --preload-file "$TMP_DIR"@/ -o "$OUTPUT_HTML"
 	checkError
 
 

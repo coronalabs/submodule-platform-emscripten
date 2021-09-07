@@ -23,7 +23,7 @@ ifeq ($(config),Debug)
   OBJDIR     = obj/Debug/corona
   # TARGETDIR  = ../../../Build/gmake/bin/Debug
   TARGETDIR  = obj/Debug
-  TARGET     = $(TARGETDIR)/libcorona.o
+  TARGET     = $(TARGETDIR)/libcorona.a
   TARGET_JS  = $(TARGETDIR)/libcorona.js
   DEFINES   += -DRtt_DEBUG -DLUA_USE_APICHECK -DRtt_EMSCRIPTEN_ENV
   INCLUDES  += -I../../../librtt -I../../../external/lua-5.1.3/src -I..
@@ -32,15 +32,16 @@ ifeq ($(config),Debug)
   ALL_CXXFLAGS  += $(CXXFLAGS) $(ALL_CFLAGS) -fno-exceptions -fno-rtti
   ALL_RESFLAGS  += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   ALL_LDFLAGS   += $(LDFLAGS) -L../../../Build/gmake/bin/Debug
-  LDDEPS    += obj/Debug/libBox2D.o obj/Debug/libRenderer.o obj/Debug/liblfs.o obj/Debug/liblpeg.o obj/Debug/liblua.o obj/Debug/libratatouille.o obj/Debug/librtt.o obj/Debug/libz.o obj/Debug/libjpeg.o obj/Debug/libpng.o
+  LDDEPS    += obj/Debug/libBox2D.a obj/Debug/libRenderer.a obj/Debug/liblfs.a obj/Debug/liblpeg.a obj/Debug/liblua.a obj/Debug/libratatouille.a obj/Debug/librtt.a obj/Debug/libz.a obj/Debug/libjpeg.a obj/Debug/libpng.a
   LIBS      += $(LDDEPS)
-  LINKCMD    = $(CXX) -g -o $(TARGET) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
+  LINKCMD    = $(AR) -rcs $(TARGET) obj/Debug/libBox2D.a obj/Debug/libRenderer.a obj/Debug/liblfs.a obj/Debug/liblpeg.a obj/Debug/liblua.a obj/Debug/libratatouille.a obj/Debug/librtt.a obj/Debug/libz.a obj/Debug/libjpeg.a obj/Debug/libpng.a
+  #LINKCMD    = $(CXX) -g -o $(TARGET) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
-  #	$(CXX) -g -o $(TARGET_JS) $(TARGET)
+  # $(CXX) -g -o $(TARGET_JS) $(TARGET)
   endef
 endif
 
@@ -48,7 +49,7 @@ ifeq ($(config),Release)
   OBJDIR     = obj/Release/corona
   # TARGETDIR  = ../../../Build/gmake/bin/Release
   TARGETDIR  = obj/Release
-  TARGET     = $(TARGETDIR)/libcorona.o
+  TARGET     = $(TARGETDIR)/libcorona.a
   TARGET_JS  = $(TARGETDIR)/libcorona.js
   DEFINES   += -DNDEBUG -DRtt_EMSCRIPTEN_ENV
   INCLUDES  += -I../../../librtt -I../../../external/lua-5.1.3/src -I..
@@ -57,15 +58,16 @@ ifeq ($(config),Release)
   ALL_CXXFLAGS  += $(CXXFLAGS) $(ALL_CFLAGS) -fno-exceptions -fno-rtti
   ALL_RESFLAGS  += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   ALL_LDFLAGS   += $(LDFLAGS) -L../../../Build/gmake/bin/Release -Wl,-x
-  LDDEPS    += obj/Release/libBox2D.o obj/Release/libRenderer.o obj/Release/liblfs.o obj/Release/liblpeg.o obj/Release/liblua.o obj/Release/libratatouille.o obj/Release/librtt.o obj/Release/libz.o obj/Release/libjpeg.o obj/Release/libpng.o
+  LDDEPS    += obj/Debug/libBox2D.a obj/Debug/libRenderer.a obj/Debug/liblfs.a obj/Debug/liblpeg.a obj/Debug/liblua.a obj/Debug/libratatouille.a obj/Debug/librtt.a obj/Debug/libz.a obj/Debug/libjpeg.a obj/Debug/libpng.a
   LIBS      += $(LDDEPS)
-  LINKCMD    = $(CXX) -O2 -o $(TARGET) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
+  LINKCMD    = $(AR) -rcs $(TARGET) obj/Debug/libBox2D.a obj/Debug/libRenderer.a obj/Debug/liblfs.a obj/Debug/liblpeg.a obj/Debug/liblua.a obj/Debug/libratatouille.a obj/Debug/librtt.a obj/Debug/libz.a obj/Debug/libjpeg.a obj/Debug/libpng.a
+  #LINKCMD    = $(CXX) -O2 -o $(TARGET) $(RESOURCES) $(ARCH) $(ALL_LDFLAGS) $(LIBS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
-  #	$(CXX) -O2 -o $(TARGET_JS) $(TARGET)
+  # $(CXX) -O2 -o $(TARGET_JS) $(TARGET)
   endef
 endif
 
@@ -82,49 +84,49 @@ endif
 .PHONY: clean prebuild prelink
 
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
-	@:
+  @:
 
 $(TARGET): $(GCH) $(LDDEPS) $(RESOURCES)
-	@echo Linking corona
-	$(SILENT) $(LINKCMD)
-	$(POSTBUILDCMDS)
+  @echo Linking corona
+  $(SILENT) $(LINKCMD)
+  $(POSTBUILDCMDS)
 
 $(TARGETDIR):
-	@echo Creating $(TARGETDIR)
+  @echo Creating $(TARGETDIR)
 ifeq (posix,$(SHELLTYPE))
-	$(SILENT) mkdir -p $(TARGETDIR)
+  $(SILENT) mkdir -p $(TARGETDIR)
 else
-	$(SILENT) mkdir $(subst /,\\,$(TARGETDIR))
+  $(SILENT) mkdir $(subst /,\\,$(TARGETDIR))
 endif
 
 $(OBJDIR):
-	@echo Creating $(OBJDIR)
+  @echo Creating $(OBJDIR)
 ifeq (posix,$(SHELLTYPE))
-	$(SILENT) mkdir -p $(OBJDIR)
+  $(SILENT) mkdir -p $(OBJDIR)
 else
-	$(SILENT) mkdir $(subst /,\\,$(OBJDIR))
+  $(SILENT) mkdir $(subst /,\\,$(OBJDIR))
 endif
 
 clean:
-	@echo Cleaning corona
+  @echo Cleaning corona
 ifeq (posix,$(SHELLTYPE))
-	$(SILENT) rm -f  $(TARGET)
-	$(SILENT) rm -rf $(OBJDIR)
+  $(SILENT) rm -f  $(TARGET)
+  $(SILENT) rm -rf $(OBJDIR)
 else
-	$(SILENT) if exist $(subst /,\\,$(TARGET)) del $(subst /,\\,$(TARGET))
-	$(SILENT) if exist $(subst /,\\,$(OBJDIR)) rmdir /s /q $(subst /,\\,$(OBJDIR))
+  $(SILENT) if exist $(subst /,\\,$(TARGET)) del $(subst /,\\,$(TARGET))
+  $(SILENT) if exist $(subst /,\\,$(OBJDIR)) rmdir /s /q $(subst /,\\,$(OBJDIR))
 endif
 
 prebuild:
-	$(PREBUILDCMDS)
+  $(PREBUILDCMDS)
 
 prelink:
-	$(PRELINKCMDS)
+  $(PRELINKCMDS)
 
 ifneq (,$(PCH))
 $(GCH): $(PCH)
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
+  @echo $(notdir $<)
+  $(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
 
 -include $(OBJECTS:%.o=%.d)

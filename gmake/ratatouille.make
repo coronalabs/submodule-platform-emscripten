@@ -23,7 +23,7 @@ ifeq ($(config),Debug)
   OBJDIR     = obj/Debug/ratatouille
   # TARGETDIR  = ../../../Build/gmake/bin/Debug
   TARGETDIR  = obj/Debug
-  TARGET     = $(TARGETDIR)/libratatouille.o
+  TARGET     = $(TARGETDIR)/libratatouille.a
   DEFINES   += -DRtt_DEBUG -DLUA_USE_APICHECK -DRtt_EMSCRIPTEN_ENV
   INCLUDES  += -I../../../librtt -I../../../librtt/Core -I../../../external/lua-5.1.3/src -I.. -I../../../external/libpng1243b01 -I../../../external/zlib123 -I../../../external/libjpeg -I../../shared
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -33,8 +33,8 @@ ifeq ($(config),Debug)
   ALL_LDFLAGS   += $(LDFLAGS)
   LDDEPS    +=
   LIBS      += $(LDDEPS)
-  # LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
+  LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
+  #LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -47,7 +47,7 @@ ifeq ($(config),Release)
   OBJDIR     = obj/Release/ratatouille
   # TARGETDIR  = ../../../Build/gmake/bin/Release
   TARGETDIR  = obj/Release
-  TARGET     = $(TARGETDIR)/libratatouille.o
+  TARGET     = $(TARGETDIR)/libratatouille.a
   DEFINES   += -DNDEBUG -DRtt_EMSCRIPTEN_ENV
   INCLUDES  += -I../../../librtt -I../../../librtt/Core -I../../../external/lua-5.1.3/src -I.. -I../../../external/libpng1243b01 -I../../../external/zlib123 -I../../../external/libjpeg -I../../shared
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -57,8 +57,8 @@ ifeq ($(config),Release)
   ALL_LDFLAGS   += $(LDFLAGS) -Wl,-x
   LDDEPS    +=
   LIBS      += $(LDDEPS)
-  # LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
+  LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
+  #LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS

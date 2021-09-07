@@ -23,7 +23,7 @@ ifeq ($(config),Debug)
   OBJDIR     = obj/Debug/lpeg
   # TARGETDIR  = ../../../Build/gmake/bin/Debug
   TARGETDIR  = obj/Debug
-  TARGET     = $(TARGETDIR)/liblpeg.o
+  TARGET     = $(TARGETDIR)/liblpeg.a
   DEFINES   += -DRtt_DEBUG -DLUA_USE_APICHECK
   INCLUDES  += -I../../../external/lpeg -I../../../external/lua-5.1.3/src
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -33,8 +33,8 @@ ifeq ($(config),Debug)
   ALL_LDFLAGS   += $(LDFLAGS)
   LDDEPS    +=
   LIBS      += $(LDDEPS)
-  # LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
+  LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
+  #LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -47,7 +47,7 @@ ifeq ($(config),Release)
   OBJDIR     = obj/Release/lpeg
   # TARGETDIR  = ../../../Build/gmake/bin/Release
   TARGETDIR  = obj/Release
-  TARGET     = $(TARGETDIR)/liblpeg.o
+  TARGET     = $(TARGETDIR)/liblpeg.a
   DEFINES   += -DNDEBUG
   INCLUDES  += -I../../../external/lpeg -I../../../external/lua-5.1.3/src
   ALL_CPPFLAGS  += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -57,8 +57,8 @@ ifeq ($(config),Release)
   ALL_LDFLAGS   += $(LDFLAGS) -Wl,-x
   LDDEPS    +=
   LIBS      += $(LDDEPS)
-  # LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
-  LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
+  LINKCMD    = $(AR) -rcs $(TARGET) $(OBJECTS)
+  #LINKCMD    = $(CC) -o $(TARGET) $(OBJECTS)
   define PREBUILDCMDS
   endef
   define PRELINKCMDS
@@ -68,7 +68,7 @@ ifeq ($(config),Release)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/lpeg.o \
+  $(OBJDIR)/lpeg.o \
 
 RESOURCES := \
 
@@ -83,54 +83,54 @@ endif
 .PHONY: clean prebuild prelink
 
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
-	@:
+  @:
 
 $(TARGET): $(GCH) $(OBJECTS) $(LDDEPS) $(RESOURCES)
-	@echo Linking lpeg
-	$(SILENT) $(LINKCMD)
-	$(POSTBUILDCMDS)
+  @echo Linking lpeg
+  $(SILENT) $(LINKCMD)
+  $(POSTBUILDCMDS)
 
 $(TARGETDIR):
-	@echo Creating $(TARGETDIR)
+  @echo Creating $(TARGETDIR)
 ifeq (posix,$(SHELLTYPE))
-	$(SILENT) mkdir -p $(TARGETDIR)
+  $(SILENT) mkdir -p $(TARGETDIR)
 else
-	$(SILENT) mkdir $(subst /,\\,$(TARGETDIR))
+  $(SILENT) mkdir $(subst /,\\,$(TARGETDIR))
 endif
 
 $(OBJDIR):
-	@echo Creating $(OBJDIR)
+  @echo Creating $(OBJDIR)
 ifeq (posix,$(SHELLTYPE))
-	$(SILENT) mkdir -p $(OBJDIR)
+  $(SILENT) mkdir -p $(OBJDIR)
 else
-	$(SILENT) mkdir $(subst /,\\,$(OBJDIR))
+  $(SILENT) mkdir $(subst /,\\,$(OBJDIR))
 endif
 
 clean:
-	@echo Cleaning lpeg
+  @echo Cleaning lpeg
 ifeq (posix,$(SHELLTYPE))
-	$(SILENT) rm -f  $(TARGET)
-	$(SILENT) rm -rf $(OBJDIR)
+  $(SILENT) rm -f  $(TARGET)
+  $(SILENT) rm -rf $(OBJDIR)
 else
-	$(SILENT) if exist $(subst /,\\,$(TARGET)) del $(subst /,\\,$(TARGET))
-	$(SILENT) if exist $(subst /,\\,$(OBJDIR)) rmdir /s /q $(subst /,\\,$(OBJDIR))
+  $(SILENT) if exist $(subst /,\\,$(TARGET)) del $(subst /,\\,$(TARGET))
+  $(SILENT) if exist $(subst /,\\,$(OBJDIR)) rmdir /s /q $(subst /,\\,$(OBJDIR))
 endif
 
 prebuild:
-	$(PREBUILDCMDS)
+  $(PREBUILDCMDS)
 
 prelink:
-	$(PRELINKCMDS)
+  $(PRELINKCMDS)
 
 ifneq (,$(PCH))
 $(GCH): $(PCH)
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
+  @echo $(notdir $<)
+  $(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
 
 $(OBJDIR)/lpeg.o: ../../../external/lpeg/lpeg.c
-	@echo $(notdir $<)
-	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
+  @echo $(notdir $<)
+  $(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
