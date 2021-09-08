@@ -723,16 +723,25 @@ var platformLibrary =
 					if (this.response) {
 						body = new Uint8Array(this.response);
 					}
-					len = body.byteLength;
 
 					var headers = this.getAllResponseHeaders();
 					if (!headers) {
 						headers = "";
 					}
 
-					//var ct = this.getResponseHeader('content-type') ? this.getResponseHeader('content-type') : "";
-					var callbackFunc = Module.cwrap('jsNetworkDispatch', 'null', ['number', 'number', 'number', 'number', 'array', 'string']);
-					callbackFunc(_requestPtr, this.readyState, this.status, len, body, headers);
+					// JS string to C string
+					var lengthBytes = lengthBytesUTF8(headers) + 1;
+					var cheaders = _malloc(lengthBytesUTF8(headers) + 1);
+					stringToUTF8(headers, cheaders, lengthBytes + 1);
+
+					// JS array to C array
+					var cbody = _malloc(body.byteLength);
+					HEAPU8.set(body, cbody);
+
+					_jsNetworkDispatch(_requestPtr, this.readyState, this.status, body.byteLength, cbody, cheaders);
+
+					_free(cbody);
+					_free(cheaders);
 					break;
 
 				default:
