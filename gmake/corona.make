@@ -41,7 +41,7 @@ ifeq ($(config),Debug)
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
-  # $(CXX) -g -o $(TARGET_JS) $(TARGET)
+  #	$(CXX) -g -o $(TARGET_JS) $(TARGET)
   endef
 endif
 
@@ -67,7 +67,7 @@ ifeq ($(config),Release)
   define PRELINKCMDS
   endef
   define POSTBUILDCMDS
-  # $(CXX) -O2 -o $(TARGET_JS) $(TARGET)
+  #	$(CXX) -O2 -o $(TARGET_JS) $(TARGET)
   endef
 endif
 
@@ -84,49 +84,49 @@ endif
 .PHONY: clean prebuild prelink
 
 all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
-  @:
+	@:
 
 $(TARGET): $(GCH) $(LDDEPS) $(RESOURCES)
-  @echo Linking corona
-  $(SILENT) $(LINKCMD)
-  $(POSTBUILDCMDS)
+	@echo Linking corona
+	$(SILENT) $(LINKCMD)
+	$(POSTBUILDCMDS)
 
 $(TARGETDIR):
-  @echo Creating $(TARGETDIR)
+	@echo Creating $(TARGETDIR)
 ifeq (posix,$(SHELLTYPE))
-  $(SILENT) mkdir -p $(TARGETDIR)
+	$(SILENT) mkdir -p $(TARGETDIR)
 else
-  $(SILENT) mkdir $(subst /,\\,$(TARGETDIR))
+	$(SILENT) mkdir $(subst /,\\,$(TARGETDIR))
 endif
 
 $(OBJDIR):
-  @echo Creating $(OBJDIR)
+	@echo Creating $(OBJDIR)
 ifeq (posix,$(SHELLTYPE))
-  $(SILENT) mkdir -p $(OBJDIR)
+	$(SILENT) mkdir -p $(OBJDIR)
 else
-  $(SILENT) mkdir $(subst /,\\,$(OBJDIR))
+	$(SILENT) mkdir $(subst /,\\,$(OBJDIR))
 endif
 
 clean:
-  @echo Cleaning corona
+	@echo Cleaning corona
 ifeq (posix,$(SHELLTYPE))
-  $(SILENT) rm -f  $(TARGET)
-  $(SILENT) rm -rf $(OBJDIR)
+	$(SILENT) rm -f  $(TARGET)
+	$(SILENT) rm -rf $(OBJDIR)
 else
-  $(SILENT) if exist $(subst /,\\,$(TARGET)) del $(subst /,\\,$(TARGET))
-  $(SILENT) if exist $(subst /,\\,$(OBJDIR)) rmdir /s /q $(subst /,\\,$(OBJDIR))
+	$(SILENT) if exist $(subst /,\\,$(TARGET)) del $(subst /,\\,$(TARGET))
+	$(SILENT) if exist $(subst /,\\,$(OBJDIR)) rmdir /s /q $(subst /,\\,$(OBJDIR))
 endif
 
 prebuild:
-  $(PREBUILDCMDS)
+	$(PREBUILDCMDS)
 
 prelink:
-  $(PRELINKCMDS)
+	$(PRELINKCMDS)
 
 ifneq (,$(PCH))
 $(GCH): $(PCH)
-  @echo $(notdir $<)
-  $(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) -x c++-header $(ALL_CXXFLAGS) -MMD -MP $(DEFINES) $(INCLUDES) -o "$@" -MF "$(@:%.gch=%.d)" -c "$<"
 endif
 
 -include $(OBJECTS:%.o=%.d)
