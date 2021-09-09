@@ -36,8 +36,6 @@ var platformLibrary =
 		var msg = UTF8ToString(_msg);
 		var resource = _resource;
 
-		var jsAlertCallback = Module.cwrap('jsAlertCallback', 'null', ['number', 'number']);
-
 		// sanity check, close old popup window
 		var obj = document.getElementById('showAlert');
 		if (obj) {
@@ -47,7 +45,7 @@ var platformLibrary =
 		var awindow = document.createElement('div');
 		awindow.id = 'showAlert';
 		awindow.close = function () {
-			jsAlertCallback(-1, resource);
+			_jsAlertCallback(-1, resource);
 			awindow.remove();
 		};
 
@@ -82,7 +80,7 @@ var platformLibrary =
 		b.style = "top:0;right:0;position:absolute;z-index: 9999"
 		b.appendChild(document.createTextNode("X"));
 		b.addEventListener("click", function () {
-			jsAlertCallback(-1, resource);
+			_jsAlertCallback(-1, resource);
 			awindow.remove();
 		});
 
@@ -100,7 +98,7 @@ var platformLibrary =
 			b.appendChild(document.createTextNode(caption));
 			b.index = i;
 			b.addEventListener("click", function () {
-				jsAlertCallback(this.index, resource);
+				_jsAlertCallback(this.index, resource);
 				awindow.remove();
 			});
 		}
@@ -311,28 +309,21 @@ var platformLibrary =
 			// disable SDL keyboard handler and enable native JS handler 
 			obj.onfocus = function (e) {
 				// dispatch event
-				var jsEnableKeyboard = Module.cwrap('jsEnableKeyboard', 'null', ['number']);
-				jsEnableKeyboard(0);
-
-				var jsTextBoxCallback = Module.cwrap('jsTextBoxCallback', 'null', ['number', 'number']);
-				jsTextBoxCallback(this.thiz, 1);		// began
+				_jsEnableKeyboard(0);
+				_jsTextBoxCallback(this.thiz, 1);		// began
 			}
 
 			// enable SDL keyboard handler and disable native JS handler
 			obj.onblur = function (e) {
 				// dispatch event
-				var jsTextBoxCallback = Module.cwrap('jsTextBoxCallback', 'null', ['number', 'number']);
-				jsTextBoxCallback(this.thiz, 3);		// ended
-
-				var jsEnableKeyboard = Module.cwrap('jsEnableKeyboard', 'null', ['number']);
-				jsEnableKeyboard(1);
+				_jsTextBoxCallback(this.thiz, 3);		// ended
+				_jsEnableKeyboard(1);
 			}
 
 			// the input event triggers every time a value is modified.
 			obj.oninput = function (e) {
 				// dispatch event
-				var jsTextBoxCallback = Module.cwrap('jsTextBoxCallback', 'null', ['number', 'number']);
-				jsTextBoxCallback(this.thiz, 2);		// editing
+				_jsTextBoxCallback(this.thiz, 2);		// editing
 			}
 
 			obj.onkeydown = function (e) {
@@ -342,8 +333,7 @@ var platformLibrary =
 			obj.onkeyup = function (e) {
 				if (e.keyCode === 13) {
 					// dispatch event
-					var jsTextBoxCallback = Module.cwrap('jsTextBoxCallback', 'null', ['number', 'number']);
-					jsTextBoxCallback(this.thiz, 4);		// submit
+					_jsTextBoxCallback(this.thiz, 4);		// submit
 				}
 			}
 		}
@@ -552,6 +542,21 @@ var platformLibrary =
 		Module.documentsDirLoaded = 0;
 		Module.appTextMeters = {};
 
+		// JS string to C string
+		Module.jstr2cstr = function (jstr) {
+			var len = lengthBytesUTF8(jstr) + 1;
+			var cstr = _malloc(len + 1);
+			stringToUTF8(jstr, cstr, len + 1);
+			return cstr;
+		}
+
+		// JS array to C array
+		Module.jarray2carray = function (jarr) {
+			var carr = _malloc(jarr.byteLength);
+			HEAPU8.set(jarr, carr);
+			return carr;
+		}
+
 		var parent = document.getElementById('canvas').parentNode;
 		parent.id = 'emscripten_border';
 
@@ -729,17 +734,9 @@ var platformLibrary =
 						headers = "";
 					}
 
-					// JS string to C string
-					var lengthBytes = lengthBytesUTF8(headers) + 1;
-					var cheaders = _malloc(lengthBytesUTF8(headers) + 1);
-					stringToUTF8(headers, cheaders, lengthBytes + 1);
-
-					// JS array to C array
-					var cbody = _malloc(body.byteLength);
-					HEAPU8.set(body, cbody);
-
+					var cheaders = Module.jstr2cstr(headers);
+					var cbody = Module.jarray2carray(body);
 					_jsNetworkDispatch(_requestPtr, this.readyState, this.status, body.byteLength, cbody, cheaders);
-
 					_free(cbody);
 					_free(cheaders);
 					break;
@@ -944,8 +941,9 @@ var platformLibrary =
 		//console.log('render: ', metrics, text, w, h, ww, hh, alignment, fontName, fontSize);
 
 		var myImageData = ctx.getImageData(0, 0, ww, hh);
-		var saveImage = Module.cwrap('jsEmscriptenBitmapSaveImage', 'null', ['number', 'number', 'array', 'number', 'number', 'number']);
-		saveImage(thiz, myImageData.data.length, myImageData.data, myImageData.width, myImageData.height, Module.isSafari);
+		var img = Module.jarray2carray(myImageData.data);
+		_jsEmscriptenBitmapSaveImage(thiz, myImageData.data.length, img, myImageData.width, myImageData.height, Module.isSafari);
+		_free(img);
 
 		//var body = document.getElementsByTagName("body")[0];
 		//body.appendChild(canva);
