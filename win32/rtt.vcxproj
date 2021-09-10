@@ -241,7 +241,6 @@
     <ClInclude Include="..\..\..\external\libpng1243b01\png.h" />
     <ClInclude Include="..\..\..\external\libpng1243b01\pngconf.h" />
     <ClInclude Include="..\..\..\external\lpeg\lpeg.h" />
-    <ClInclude Include="..\..\..\external\lsqlite3-7\sqlite3.h" />
     <ClInclude Include="..\..\..\external\lua-5.1.3\src\lapi.h" />
     <ClInclude Include="..\..\..\external\lua-5.1.3\src\lauxlib.h" />
     <ClInclude Include="..\..\..\external\lua-5.1.3\src\lcode.h" />
@@ -475,7 +474,6 @@
     <ClInclude Include="..\..\..\librtt\Rtt_LuaLibMedia.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_LuaLibNative.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_LuaLibPhysics.h" />
-    <ClInclude Include="..\..\..\librtt\Rtt_LuaLibSQLite.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_LuaLibSystem.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_LuaProxy.h" />
     <ClInclude Include="..\..\..\librtt\Rtt_LuaProxyVTable.h" />
@@ -683,8 +681,6 @@
     <ClCompile Include="..\..\..\external\libpng1243b01\pngwtran.c" />
     <ClCompile Include="..\..\..\external\libpng1243b01\pngwutil.c" />
     <ClCompile Include="..\..\..\external\lpeg\lpeg.c" />
-    <ClCompile Include="..\..\..\external\lsqlite3-7\lsqlite3.c" />
-    <ClCompile Include="..\..\..\external\lsqlite3-7\sqlite3.c" />
     <ClCompile Include="..\..\..\external\lua-5.1.3\src\lapi.c" />
     <ClCompile Include="..\..\..\external\lua-5.1.3\src\lauxlib.c" />
     <ClCompile Include="..\..\..\external\lua-5.1.3\src\lbaselib.c" />
@@ -902,7 +898,6 @@
     <ClCompile Include="..\..\..\librtt\Rtt_LuaLibMedia.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_LuaLibNative.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_LuaLibPhysics.cpp" />
-    <ClCompile Include="..\..\..\librtt\Rtt_LuaLibSQLite.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_LuaLibSystem.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_LuaProxy.cpp" />
     <ClCompile Include="..\..\..\librtt\Rtt_LuaProxyVTable.cpp" />

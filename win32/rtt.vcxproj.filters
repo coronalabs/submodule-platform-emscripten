@@ -1652,15 +1652,6 @@
     <ClCompile Include="GeneratedFiles\launchpad_luaload.cpp">
       <Filter>GeneratedFiles</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\librtt\Rtt_LuaLibSQLite.cpp">
-      <Filter>sqlite3</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\external\lsqlite3-7\lsqlite3.c">
-      <Filter>sqlite3</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\external\lsqlite3-7\sqlite3.c">
-      <Filter>sqlite3</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Rtt_EmscriptenAudioPlayer.h">
@@ -2806,12 +2797,6 @@
     <ClInclude Include="..\..\shared\Rtt_BitmapUtils.h">
       <Filter>rtt</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\librtt\Rtt_LuaLibSQLite.h">
-      <Filter>sqlite3</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\external\lsqlite3-7\sqlite3.h">
-      <Filter>sqlite3</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="lua">
@@ -2891,9 +2876,6 @@
     </Filter>
     <Filter Include="GeneratedFiles">
       <UniqueIdentifier>{b3988b5b-0227-467c-a883-334577daa429}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="sqlite3">
-      <UniqueIdentifier>{d20cbd87-110f-441f-857e-7182b9a96fff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

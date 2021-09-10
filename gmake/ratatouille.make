@@ -104,9 +104,6 @@ OBJECTS := \
 	$(OBJDIR)/EmscriptenNetworkSupport.o \
 	$(OBJDIR)/network_luaload.o \
 	$(OBJDIR)/Rtt_BitmapUtils.o \
-	$(OBJDIR)/Rtt_LuaLibSQLite.o \
-	$(OBJDIR)/sqlite3.o \
-	$(OBJDIR)/lsqlite3.o \
 
 RESOURCES := \
 
@@ -305,18 +302,6 @@ $(OBJDIR)/network_luaload.o: ../network_luaload.cpp
 $(OBJDIR)/Rtt_BitmapUtils.o: ../../shared/Rtt_BitmapUtils.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
-
-$(OBJDIR)/Rtt_LuaLibSQLite.o: ../../../librtt/Rtt_LuaLibSQLite.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
-
-$(OBJDIR)/sqlite3.o: ../../../external/lsqlite3-7/sqlite3.c
-	@echo $(notdir $<)
-	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
-
-$(OBJDIR)/lsqlite3.o: ../../../external/lsqlite3-7/lsqlite3.c
-	@echo $(notdir $<)
-	$(SILENT) $(CC) $(ALL_CFLAGS) $(FORCE_INCLUDE) -o "$@" -MF $(@:%.o=%.d) -c "$<"
 
 -include $(OBJECTS:%.o=%.d)
 ifneq (,$(PCH))
