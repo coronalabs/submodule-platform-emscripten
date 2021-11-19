@@ -114,7 +114,7 @@ pushd $path > /dev/null
 	then
 		echo " "
 		echo "Generate resource.car:"
-		find "$TMP_DIR" -mindepth 1 -maxdepth 1 -iname "*.lu" | $path/car -f - "$TMP_DIR/resource.car"
+		find "$TMP_DIR" -mindepth 1 -maxdepth 1 -iname "*.lu" | "$path"/../../../bin/mac/car -f - "$TMP_DIR/resource.car"
 		checkError
 		find "$TMP_DIR" -mindepth 1 -maxdepth 1 -iname "*.lu" -print0 | xargs -0 rm -f 
 		checkError
